@@ -1,4 +1,4 @@
-# https://stackoverflow.com/questions/28259301/how-to-convert-an-xml-file-to-nice-pandas-dataframe
+# Ref.: https://stackoverflow.com/questions/28259301/how-to-convert-an-xml-file-to-nice-pandas-dataframe
 
 #%%
 # Importing BeautifulSoup and 
@@ -21,47 +21,43 @@ beautifulSoupText = BeautifulSoup(contents, 'lxml')
 # Using the prettify method to modify the code
 #  Prettify() function in BeautifulSoup helps
 # to view about the tag nature and their nesting
-# print(beautifulSoupText.body.prettify())
 
-#%%
-print('1', type(beautifulSoupText)) # <class 'bs4.BeautifulSoup'>
-print('2', type(beautifulSoupText.body)) # <class 'bs4.element.Tag'>
-print('3', type(beautifulSoupText.body.prettify())) # <class 'str'>
+# Check file content:
+print(beautifulSoupText.body.prettify())
+
+# type(beautifulSoupText))
+# -> <class 'bs4.BeautifulSoup'>
+
+# type(beautifulSoupText.body)) 
+# -> <class 'bs4.element.Tag'>
+
+# type(beautifulSoupText.body.prettify()))
+# -> <class 'str'>
 
 #%%
 import pandas as pd
 import xml.etree.ElementTree as ET
 import io
 
-#%%
-xml_data = io.StringIO(beautifulSoupText.body.prettify())
-
-etree = ET.parse(xml_data) #create an ElementTree object 
-doc_df = pd.DataFrame(list(iter_docs(etree.getroot())))
-
-doc_df
-# %%
-print(doc_df)
-# %%
-print(etree)
-# %%
-# print(beautifulSoupText.body.prettify())
 # %%
 teste = pd.read_xml(path_or_file)
 print(type(teste))
 # %%
 import pandas as pd
-data=pd.read_html('Produtos.html',skiprows=0)[0]
-# %%
-data
-# %%
-data.head()
+data = pd.read_html('Produtos.html',skiprows=0)[0]
+
 # %%
 type(data)
+
+# %%
+data.head()
+
+# %%
+data
+
 # %%
 df = pd.DataFrame(data)
-# %%
-data[0,1,1]
+
 # %%
 data.columns = [
 'CODIGO',
@@ -145,6 +141,8 @@ df
 # %%
 import openpyxl
 df.to_excel('Produtos.xlsx')
+
 # %%
 df.to_csv('Produtos.csv')
+
 # %%
