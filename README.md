@@ -1,7 +1,7 @@
 # Web Scraping (Beautifulsoup, Python lib)
 
 ## Main steps:
-
+ 
 - import libs
 - read file
 - check content
